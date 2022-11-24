@@ -1,4 +1,4 @@
-import { createEntityAdapter } from "@reduxjs/toolkit";
+import { createEntityAdapter, createSelector } from "@reduxjs/toolkit";
 import { apiSlice } from "../api/apiSlice";
 
 export const postsAdapter = createEntityAdapter();
@@ -23,3 +23,16 @@ export const postsApiSlice = apiSlice.injectEndpoints({
     }),
   }),
 });
+
+export const { useGetPostsQuery } = postsApiSlice;
+
+export const selectPostsResult = postsApiSlice.endpoints.getPosts.select();
+
+export const selectPostsData = createSelector(
+  selectPostsResult,
+  (state) => state.data
+);
+
+export const { selectAll } = postsAdapter.getSelectors(
+  (state) => selectPostsData(state) ?? initialState
+);
