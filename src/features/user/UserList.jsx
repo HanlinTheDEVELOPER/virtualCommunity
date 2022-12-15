@@ -19,7 +19,7 @@ const UserList = () => {
   const user = useSelector(selectAllUser);
 
   const renderedUsers = user.map((user) => (
-    <div style={userStyle}>
+    <div style={userStyle} key={user?.id}>
       <div>
         <img src={user?.avatar} alt="" />
       </div>

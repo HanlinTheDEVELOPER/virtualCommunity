@@ -33,6 +33,6 @@ export const selectPostsData = createSelector(
   (state) => state.data
 );
 
-export const { selectAll } = postsAdapter.getSelectors(
+export const { selectAll: selectAllPosts } = postsAdapter.getSelectors(
   (state) => selectPostsData(state) ?? initialState
 );
